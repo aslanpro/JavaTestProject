@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'checkstyle'
+apply plugin: "sonar-runner"
 
 sourceCompatibility = 1.6
 version = '1.0'
@@ -19,3 +20,13 @@ dependencies {
 }
 
 task checkstyle(dependsOn: ['checkstyleMain', 'checkstyleTest'])
+
+sonarRunner {
+    sonarProperties {
+        property "sonar.host.url", "http://ec2-54-72-74-133.eu-west-1.compute.amazonaws.com/"
+        property "sonar.jdbc.url", "jdbc:mysql://ec2-54-72-74-133.eu-west-1.compute.amazonaws.com/"
+        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+        property "sonar.jdbc.username", "sonar"
+        property "sonar.jdbc.password", "sonarroot"
+    }
+}
