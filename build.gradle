@@ -23,8 +23,8 @@ task checkstyle(dependsOn: ['checkstyleMain', 'checkstyleTest'])
 
 sonarRunner {
     sonarProperties {
-        property "sonar.host.url", "http://ec2-54-72-74-133.eu-west-1.compute.amazonaws.com/"
-        property "sonar.jdbc.url", "jdbc:mysql://ec2-54-72-74-133.eu-west-1.compute.amazonaws.com:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true/"
+        property "sonar.host.url", "http://ec2-54-72-74-133.eu-west-1.compute.amazonaws.com"
+        property "sonar.jdbc.url", "jdbc:mysql://ec2-54-72-74-133.eu-west-1.compute.amazonaws.com:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true"
         property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
         property "sonar.jdbc.username", "sonar"
         property "sonar.jdbc.password", "sonarroot"
