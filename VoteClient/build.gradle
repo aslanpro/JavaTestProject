@@ -19,7 +19,8 @@ repositories {
 
 
 dependencies {
-	compile files('VoteClient/libs/android.support.v4.jar')
+	//compile files('libs/android.support.v4.jar')
+	compile fileTree(dir: 'libs', include: '*.jar')
 
 }
 
