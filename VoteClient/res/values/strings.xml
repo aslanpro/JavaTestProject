@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name = "send_key">Send key test</string>
+    <string name = "app_name">Voting system</string>
+    <string name = "button_send">Send</string>
+    <string name = "button_start">Connect to the server</string>
+    <string name = "edit_message">Enter your name:</string>
+    <string name = "text_name">Enter your name:</string>
+    <string name = "text_mail">Enter your e-mail:</string>
+    <string name = "r_name">Name</string>
+    <string name = "button_create">Create</string>
+    <string name = "button_show">Refresh</string>
+    <string name = "create">Question</string>
+    <string name = "conf">Type question of your voting:</string>
+    <string name = "confirm">Confirm member list</string>
+    <string name = "back">Back to conferences list</string>
+    <string name = "vote">Vote:</string>
+    <string name = "principals">Principal list:</string>
+    <string name = "decline">Decline</string>
+    <string name = "confirm_mem">Confirm</string>
+    <string name = "exit">Exit conference</string>
+    <string name = "button_discon">Disconnect</string>
+    <string name = "ready">Ready to start</string>
+    <string name = "yes">Yes</string>
+    <string name = "no">No</string>
+    <string name = "abstain">Abstain</string>
+    <string name = "results">Results:</string>
+
+</resources>

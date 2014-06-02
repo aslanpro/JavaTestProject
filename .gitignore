@@ -5,3 +5,11 @@ build/**
 .classpath
 .settings/
 .gradle/**
+VoteClient/bin/**
+VoteClient/build/**
+VoteClient/.project
+VoteClient/.metadata
+VoteClient/.classpath
+VoteClient/.settings/
+VoteClient/.gradle/**
+VoteClient/obj/**

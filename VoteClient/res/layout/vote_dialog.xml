@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/vote_question_dilog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/abstain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vote_question_dilog"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/abstain" />
+
+    <Button
+        android:id="@+id/yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/abstain"
+        android:layout_alignBottom="@+id/abstain"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/abstain"
+        android:text="@string/yes" />
+
+    <Button
+        android:id="@+id/no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/abstain"
+        android:layout_alignBottom="@+id/abstain"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/abstain"
+        android:text="@string/no" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/yes"
+        android:layout_alignRight="@+id/no"
+        android:layout_below="@+id/yes"
+        android:layout_marginTop="20dp" />
+
+</RelativeLayout>

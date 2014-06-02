@@ -1,0 +1,64 @@
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.0'
+    }
+}
+
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+
+}
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.1.0"
+	
+	sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+	    androidTest.setRoot('tests')
+    }
+	
+	defaultConfig {
+        versionCode -1
+        versionName null
+        minSdkVersion -1
+        targetSdkVersion -1
+    }
+}
+
+task connectADB(type: Exec, dependsOn: assemble){
+	commandLine 'adb', 'connect', '176.37.251.15:5555'
+}
+
+task launchApp(type: Exec, dependsOn: ['connectADB', 'installDebug']){
+	commandLine 'adb', 'shell', 'am', 'start', '-n', 'com.voting/com.voting.VoteClientActivity'
+}
+
+task disconnectADB(type: Exec, dependsOn: launchApp){
+	commandLine 'adb', 'disconnect', '176.37.251.15:5555'
+}
+
+task start(dependsOn: launchApp){
+	
+}
