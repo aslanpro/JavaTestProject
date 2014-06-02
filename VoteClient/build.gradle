@@ -19,7 +19,7 @@ repositories {
 
 
 dependencies {
-	compile files('libs/android.support.v4.jar')
+	compile files('VoteClient/libs/android.support.v4.jar')
 
 }
 
