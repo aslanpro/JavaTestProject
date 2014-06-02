@@ -19,6 +19,7 @@ repositories {
 
 
 dependencies {
+	compile files('libs/*.jar')
 
 }
 
