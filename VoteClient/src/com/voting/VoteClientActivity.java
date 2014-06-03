@@ -67,7 +67,7 @@ public class VoteClientActivity extends Activity {
     private ClientThread cTh;
     private PipedWriter outPipe;
     static final int PORT = 7070;
-    static final String IP_ADR = "192.168.1.3"; //10.0.2.2 - local; 192.168.1.2 - router
+    static final String IP_ADR = "54.201.60.64"; //10.0.2.2 - local; 192.168.1.2 - router
     static final int RANDOM_SIZE = 28; // size of random bytes for handshake
     
     private RSA rsa;
