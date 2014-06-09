@@ -32,10 +32,11 @@ task compileLib(type: Exec, dependsOn: compileCpp){
 
 task copyServer(type: Exec, dependsOn: compileLib){
 	commandLine 'ssh', 'deployserver', 'rm', '-rf',  '~/serverdir/*'
+	commandLine 'chmod', '755', 'runScript'
 	commandLine 'scp', 'runScript', 'server_key.k', 'build/libs/Server-1.0.jar', 'libAES.so', 'deployserver:~/serverdir'
 }
 
 task runServer(type: Exec, dependsOn: copyServer){
-	commandLine 'ssh', 'deployserver', 'chmod', '755', '~/serverdir/runScript'
+	//commandLine 'ssh', 'deployserver', 'chmod', '755', '~/serverdir/runScript'
 	commandLine 'ssh', 'deployserver', '~/serverdir/runScript'
 }
