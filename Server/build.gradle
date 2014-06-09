@@ -36,5 +36,6 @@ task copyServer(type: Exec, dependsOn: compileLib){
 }
 
 task runServer(type: Exec, dependsOn: copyServer){
+	commandLine 'ssh', 'deployserver', '"chmod 755 serverdir/runScript"
 	commandLine 'ssh', 'deployserver', '"serverdir/runScript"'
 }
