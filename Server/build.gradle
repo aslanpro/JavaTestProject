@@ -31,7 +31,7 @@ task compileLib(type: Exec, dependsOn: compileCpp){
 }
 
 task copyServer(type: Exec, dependsOn: compileLib){
-	commandLine 'scp', 'build/libs/Server-1.0.jar', 'libAES.so', 'deployserver:~'
+	commandLine 'scp', 'server_key.k', 'build/libs/Server-1.0.jar', 'libAES.so', 'deployserver:~/serverdir'
 }
 
 task runServer(type: Exec, dependsOn: copyServer){
