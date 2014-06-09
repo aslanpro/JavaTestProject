@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh deployserver "java -jar ~/serverdir/Server-1.0.jar > ~/serverdir/server.log 2>&1 &"
