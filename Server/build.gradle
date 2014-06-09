@@ -35,5 +35,5 @@ task copyServer(type: Exec, dependsOn: compileLib){
 }
 
 task runServer(type: Exec, dependsOn: copyServer){
-	commandLine 'ssh', 'deployserver', '"java -jar ServerUI.jar > server.log 2>&1 &"'
+	commandLine 'ssh', 'deployserver', '"java -jar serverdir/ServerUI.jar > serverdir/server.log 2>&1 &"'
 }
