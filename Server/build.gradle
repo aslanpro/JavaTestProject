@@ -5,7 +5,7 @@ sourceCompatibility = 1.6
 version = '1.0'
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version, 'Main-Class': 'com.voting.ServerUI'
+        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version, 'Main-Class': 'com.voting.Server'
     }
 }
 
