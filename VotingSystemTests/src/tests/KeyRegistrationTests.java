@@ -1,6 +1,5 @@
 package tests;
 
-
 import java.io.IOException;
 
 import junit.framework.Assert;
@@ -8,32 +7,18 @@ import utils.AppActions;
 import utils.ConnectToServerActivity;
 import utils.RegisterKeyDialog;
 
-import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.core.UiObjectNotFoundException;
-import com.android.uiautomator.core.UiScrollable;
-import com.android.uiautomator.core.UiSelector;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 
 public class KeyRegistrationTests extends UiAutomatorTestCase{
-	
-	public void test_noSertificateActivityLooksCorrectly() throws UiObjectNotFoundException, IOException, InterruptedException{
+	/*
+	public void test_NoSertificateActivityLooksCorrectly() throws UiObjectNotFoundException, IOException, InterruptedException{
 		AppActions.clearVotingSystemApp();
 		AppActions.findAndRunVotingSystemApp();
-		Assert.assertTrue("You don't have a certificate text wasn't displayed", 
-				 ConnectToServerActivity.noCertificateText().exists());
-		Assert.assertTrue("Connect to the server button was not clickable", 
-				 ConnectToServerActivity.connectToServerButton().isClickable());
-		Assert.assertTrue("Create button was not displayed", 
-				 ConnectToServerActivity.createButton().exists());
-		Assert.assertTrue("Refresh button was not displayed", 
-				 ConnectToServerActivity.refreshButton().exists());
-		Assert.assertFalse("Create button was clickable", 
-				 ConnectToServerActivity.createButton().isEnabled());
-		Assert.assertFalse("Refresh button was clicable", 
-				 ConnectToServerActivity.refreshButton().isEnabled());
+		ConnectToServerActivity.verifyNoSertificateState();
      }
 	
-	 public void test_registerKeyDialogAppears() throws IOException, InterruptedException, UiObjectNotFoundException{
+	 public void test_RegisterKeyDialogAppears() throws IOException, InterruptedException, UiObjectNotFoundException{
 		 AppActions.clearVotingSystemApp();
 		 AppActions.findAndRunVotingSystemApp();
 		 ConnectToServerActivity.connectToServerButton().clickAndWaitForNewWindow();
@@ -54,7 +39,29 @@ public class KeyRegistrationTests extends UiAutomatorTestCase{
 		 Assert.assertFalse("Send button was enabled", 
 				 RegisterKeyDialog.sendButton().isEnabled());
 	 }
-	
-	
-
+	 
+	 public void test_KeyRegistrationWithInvalidDataFails() throws IOException, InterruptedException, UiObjectNotFoundException{
+		 AppActions.clearVotingSystemApp();
+		 AppActions.findAndRunVotingSystemApp();
+		 RegisterKeyDialog.fillRegKeyDialog(" ", " ");
+		 ConnectToServerActivity.verifyNoSertificateState();
+		 RegisterKeyDialog.fillRegKeyDialog("test", " ");
+		 ConnectToServerActivity.verifyNoSertificateState();
+		 RegisterKeyDialog.fillRegKeyDialog("test", "test");
+		 ConnectToServerActivity.verifyNoSertificateState();
+		 RegisterKeyDialog.fillRegKeyDialog("test", "test@");
+		 ConnectToServerActivity.verifyNoSertificateState();
+		 RegisterKeyDialog.fillRegKeyDialog("test", "test.com");
+		 ConnectToServerActivity.verifyNoSertificateState();
+		 RegisterKeyDialog.fillRegKeyDialog("test", "test@test");
+		 ConnectToServerActivity.verifyNoSertificateState();
+      }
+	 
+	 public void test_KeyRegistrationIsSuccessfull() throws IOException, InterruptedException, UiObjectNotFoundException{
+		 AppActions.clearVotingSystemApp();
+		 AppActions.findAndRunVotingSystemApp();
+		 RegisterKeyDialog.fillRegKeyDialog("testname", "testmail@test.com");
+		 ConnectToServerActivity.verifyHasSertificateState();
+	 }*/
+	 
 }

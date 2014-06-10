@@ -2,9 +2,7 @@ package utils;
 
 import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.core.UiObjectNotFoundException;
-import com.android.uiautomator.core.UiScrollable;
 import com.android.uiautomator.core.UiSelector;
-import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 
 public class RegisterKeyDialog {
 	
@@ -41,6 +39,16 @@ public class RegisterKeyDialog {
 	public static UiObject sendButton(){
 		return new UiObject(new UiSelector()
 			.className("android.widget.Button").text("Send"));
+	}
+	
+	public static void fillRegKeyDialog(String name, String email) throws UiObjectNotFoundException, InterruptedException{
+		ConnectToServerActivity.connectToServerButton().clickAndWaitForNewWindow();
+		String nameForInput = name + "\n";
+		nameInput().setText(nameForInput);
+		String emailForInput = email + "\n";
+	    emailInput().setText(emailForInput);
+	    sendButton().click();
+	    Thread.sleep(2000);
 	}
 
 }
