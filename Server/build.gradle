@@ -33,7 +33,7 @@ task compileLib(type: Exec, dependsOn: compileCpp){
 }
 
 task killOldServer(type: Exec, dependsOn: compileLib){
-	commandLine 'ssh', 'deployserver', '"~/killserver.sh"'
+	commandLine 'ssh', 'deployserver', '~/killserver.sh'
 }
 
 task checkOldServer(type: Exec, dependsOn: killOldServer){
