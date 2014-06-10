@@ -214,9 +214,9 @@ public class Server {
 		User user = db.getUser(id);
 		if(user != null) {
 			if (user.getTrust().equals("high")) {
-				db.setTrustById("middle")
+				db.setTrustById("middle", id)
 			} else {
-				db.setTrustById("middle")
+				db.setTrustById("ban", id)
 			}
 		}
         /*Connection conn = null;
