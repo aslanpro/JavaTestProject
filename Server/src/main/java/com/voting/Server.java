@@ -21,6 +21,9 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.crypto.KeyGenerator;
+import com.voting.database.DataBaseDriver;
+import com.voting.database.DataBaseDriverFactory;
+import com.voting.database.User;
 
 
 public class Server {
@@ -45,6 +48,11 @@ public class Server {
     private static final String USER = "root";
     private static final String PASWORD = "root";
     private static final String URL = "jdbc:mysql://localhost:3306/keyDB";
+
+	/*
+     * For NOSQL database connection:
+     */
+	private static final DataBaseDriver db;
     
     /*
      * For email validation:
@@ -114,6 +122,11 @@ public class Server {
                 System.err.println("Form output. File must by created");
             }
         }
+		db = DataBaseDriverFabric.getDriver("server.conf");
+		if (db == null) {
+			System.err.println("NoSql database is not configured. Aborting");
+			System.exit(0);
+		}
     }
 
     /*
@@ -128,6 +141,10 @@ public class Server {
      * Start server
      */
     public void start() {
+		if(!db.connect()) {
+			System.err.println("NoSql database connection. Aborting");
+			System.exit(0);;
+		}
         idCount = 0;
         keepWaiting = true;
         try {
@@ -194,7 +211,15 @@ public class Server {
      * Change trust level to worse
      */
     private void banClient(byte[] id) {
-        Connection conn = null;
+		User user = db.getUser(id);
+		if(user != null) {
+			if (user.getTrust().equals("high")) {
+				db.setTrustById("middle")
+			} else {
+				db.setTrustById("middle")
+			}
+		}
+        /*Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(URL, USER, PASWORD);
@@ -228,7 +253,7 @@ public class Server {
                     Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex1);
                 }
             }
-        }
+        }*/
     }
     
     private Error joinConf(int id, ClientThread cT) {
@@ -380,7 +405,26 @@ public class Server {
                 }
             }
         }
-        Connection conn = null;
+		User user = db.getUser(id);
+		if(user != null) {
+			if (!user.getTrust().equals("ban")) {
+				cT.pr.setName(user.getName());
+                cT.pr.setEmail(user.getEmail());
+                cT.setKey(user.getPrK());
+                cT.pr.setID(id);
+                cT.pr.setTrust(user.getTrust().equals("middle"));
+                cT.accepted = true;
+                System.out.println("Client " + cT.pr.getName() + " connected");
+                return null;
+			} else {
+				System.out.println("Clien " + cT.pr.getName() + " is banned");
+                return new Error(Error.BAN_ERROR);
+			}
+		} else {
+			System.err.println("Can't find user in db!!!");
+			return new Error(Error.DATABASE_ERROR);
+		}
+        /*Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(URL, USER, PASWORD);
@@ -425,7 +469,7 @@ public class Server {
                 }
             }
             return new Error(Error.DATABASE_ERROR);
-        }
+        }*/
     }
     
     /*
@@ -441,7 +485,18 @@ public class Server {
         UUID id = UUID.randomUUID();
         byte[] idBytes = uuidToByte(id);
         byte[] cert;
-        Connection conn = null;
+		if (db.setBanByPrK(key)) {
+			User user = new User(idBytes, key, r.getName(), r.getEmail(), giveCert(idBytes, key));
+			if (db.insertNewUser(user)) {
+				System.out.println("Client " + r.getName() + " registrated. Email = " + r.getEmail());
+				return new Information(idBytes, key, cert);
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+        /*Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(URL, USER, PASWORD);
@@ -471,7 +526,7 @@ public class Server {
                 }
             }
             return null;
-        }
+        }*/
     }
 
     /*
