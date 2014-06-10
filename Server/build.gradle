@@ -37,7 +37,7 @@ task killOldServer(type: Exec, dependsOn: compileLib){
 }
 
 task checkOldServer(type: Exec, dependsOn: killOldServer){
-	commandLine 'ssh', 'deployserver', 'sudo', 'netstat', '-pl', '|', 'grep', ':7070'
+	commandLine 'ssh', 'deployserver', 'sudo', 'netstat', '-pl', '|', 'grep', '7070'
 }
 
 task cleanOldServer(type: Exec, dependsOn: checkOldServer){
