@@ -32,16 +32,22 @@ task compileLib(type: Exec, dependsOn: compileCpp){
 	commandLine 'g++', '-m32', '-shared', '-o', 'libAES.so', 'aes_jni.o', 'AES.o'
 }
 
-task copyServer(type: Exec, dependsOn: compileLib){
+task killOldServer(type: Exec, dependsOn: compileLib){
 	commandLine 'ssh', 'deployserver', '"~/killserver.sh"'
-	commandLine 'sleep', '3'
+}
+
+task checkOldServer(type: Exec, dependsOn: killOldServer){
 	commandLine 'ssh', 'deployserver', 'sudo', 'netstat', '-pl', '|', 'grep', ':7070'
+}
+
+task cleanOldServer(type: Exec, dependsOn: checkOldServer){
 	commandLine 'ssh', 'deployserver', 'rm', '-rf',  '~/serverdir/*'
-	//commandLine 'chmod', '755', 'runScript'
+}
+
+task copyNewServer(type: Exec, dependsOn: cleanOldServer){
 	commandLine 'scp', 'server_key.k', 'build/libs/Server-1.0.jar', 'libAES.so', 'deployserver:~/serverdir'
 }
 
-task runServer(type: Exec, dependsOn: copyServer){
-	//commandLine 'ssh', 'deployserver', 'chmod', '755', '~/serverdir/runScript'
+task runServer(type: Exec, dependsOn: copyNewServer){
 	commandLine 'ssh', 'deployserver', 'java', '-jar', '~/serverdir/Server-1.0.jar', '>', '~/serverdir/server.log', '2>&1', '&'
 }
