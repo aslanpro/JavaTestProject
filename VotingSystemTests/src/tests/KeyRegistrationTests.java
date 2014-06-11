@@ -11,7 +11,7 @@ import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 
 public class KeyRegistrationTests extends UiAutomatorTestCase{
-	/*
+	
 	public void test_NoSertificateActivityLooksCorrectly() throws UiObjectNotFoundException, IOException, InterruptedException{
 		AppActions.clearVotingSystemApp();
 		AppActions.findAndRunVotingSystemApp();
@@ -62,6 +62,6 @@ public class KeyRegistrationTests extends UiAutomatorTestCase{
 		 AppActions.findAndRunVotingSystemApp();
 		 RegisterKeyDialog.fillRegKeyDialog("testname", "testmail@test.com");
 		 ConnectToServerActivity.verifyHasSertificateState();
-	 }*/
+	 }
 	 
 }

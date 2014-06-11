@@ -43,5 +43,5 @@ public class VotingCreationTests extends UiAutomatorTestCase{
 		Thread.sleep(2000);
 		VoteActivity.verifyQuestionCreated("Test question?", "testname", "testmail@test.com");
 	}
-
+	
 }

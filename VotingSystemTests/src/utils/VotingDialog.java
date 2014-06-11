@@ -12,12 +12,12 @@ public class VotingDialog {
 	
 	public static UiObject voteText(){
 		return new UiObject(new UiSelector()
-			.className("android.widget.TextView").text("Vote"));
+			.className("android.widget.TextView").resourceId("android:id/title"));
 	}
 	
 	public static UiObject question(){
 		return new UiObject(new UiSelector()
-			.className("android.widget.TextView").index(0));
+			.className("android.widget.TextView").resourceId("com.voting:id/vote_question_dilog"));
 	}
 	
 	public static UiObject yesButton(){
@@ -52,7 +52,7 @@ public class VotingDialog {
 	
 	public static UiObject waitingProgress(){
 		return new UiObject(new UiSelector()
-			.className("android.widget.ProgressBar").index(4));
+			.className("android.widget.ProgressBar").resourceId("android:id/progress"));
 	}
 
 }
