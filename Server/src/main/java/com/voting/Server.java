@@ -52,7 +52,7 @@ public class Server {
 	/*
      * For NOSQL database connection:
      */
-	private static final DataBaseDriver db;
+	private DataBaseDriver db;
     
     /*
      * For email validation:
