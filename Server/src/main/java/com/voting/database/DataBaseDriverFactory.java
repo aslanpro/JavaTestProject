@@ -15,8 +15,9 @@ public class DataBaseDriverFactory {
 
 		Path file = FileSystems.getDefault().getPath(path);
 
+		BufferedReader reader = null;
 		try {
-			BufferedReader reader = Files.newBufferedReader(file, charset);
+			reader = Files.newBufferedReader(file, charset);
 			String line = reader.readLine();
 
 			if (line.equals("nosql")) {
@@ -31,7 +32,12 @@ public class DataBaseDriverFactory {
 		} catch (IOException x) {
 			System.err.format("IOException: %s%n", x);
 		} finally {
-			reader.close();
+			if (reader != null)
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}
 
 		return null;
