@@ -122,7 +122,7 @@ public class Server {
                 System.err.println("Form output. File must by created");
             }
         }
-		db = DataBaseDriverFabric.getDriver("server.conf");
+		db = DataBaseDriverFactory.getDriver("server.conf");
 		if (db == null) {
 			System.err.println("NoSql database is not configured. Aborting");
 			System.exit(0);
