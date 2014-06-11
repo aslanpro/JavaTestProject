@@ -486,7 +486,8 @@ public class Server {
         byte[] idBytes = uuidToByte(id);
         byte[] cert;
 		if (db.setBanByPrK(key)) {
-			User user = new User(idBytes, key, r.getName(), r.getEmail(), giveCert(idBytes, key));
+			cert = giveCert(idBytes, key);
+			User user = new User(idBytes, key, r.getName(), r.getEmail(), cert);
 			if (db.insertNewUser(user)) {
 				System.out.println("Client " + r.getName() + " registrated. Email = " + r.getEmail());
 				return new Information(idBytes, key, cert);
