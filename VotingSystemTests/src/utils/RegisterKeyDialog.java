@@ -48,7 +48,7 @@ public class RegisterKeyDialog {
 		String emailForInput = email + "\n";
 	    emailInput().setText(emailForInput);
 	    sendButton().click();
-	    Thread.sleep(2000);
+	    Thread.sleep(3000);
 	}
 
 }

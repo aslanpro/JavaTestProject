@@ -38,32 +38,27 @@ public class VoteActivity {
 			.className("android.widget.TextView").text("Results:"));
 	}
 	
-	public static UiObject yesResults(){
+	public static UiObject yesResult(){
 		return new UiObject(new UiSelector()
-			.className("android.widget.TextView").index(3));
+			.className("android.widget.TextView").resourceId("com.voting:id/yes_result"));
 	}
 	
-	public static UiObject noResutls(){
+	public static UiObject noResult(){
 		return new UiObject(new UiSelector()
-			.className("android.widget.TextView").index(4));
+			.className("android.widget.TextView").resourceId("com.voting:id/no_result"));
 	}
 	
-	public static UiObject votedPrinsipalsDropdown(){
+	public static UiObject votedPrincipalsDropdown(){
 		return new UiObject(new UiSelector()
 			.className("android.widget.TextView").text("Voted principals:"));
 	}
 	
-	public static UiObject abstainedPrincipalsDropDown(){
+	public static UiObject abstainedPrincipalsDropdown(){
 		return new UiObject(new UiSelector()
 			.className("android.widget.TextView").text("Abstained principals:"));
 	}
 	
-	public static UiObject firstPrincipal(){
-		return new UiObject(new UiSelector()
-			.className("android.widget.TextView").resourceId("android:id/text1"));
-	}
-	
-	public static UiObject okButton(){
+		public static UiObject okButton(){
 		return new UiObject(new UiSelector()
 			.className("android.widget.Button").text("OK"));
 	}
@@ -73,7 +68,7 @@ public class VoteActivity {
 		Assert.assertTrue("Quesiton box was not displayed", question().exists());
 		Assert.assertEquals("Invalid question was displayed", question, question().getText());
 	    Assert.assertTrue("Principal list text was not displayed", principalListText().exists());
-	    verifyFirstPrincipal(principalName, principalEmail);
+	    verifyPrincipal(principalName, principalEmail);
 	    Assert.assertTrue("Exit confenence button was not displayed", 
 	    		exitConferenceButton().exists());
 	    Assert.assertTrue("Exit conference button was disabled", 
@@ -84,10 +79,23 @@ public class VoteActivity {
 	    		readyToStartButton().isEnabled());
 	}
 	
-	public static void verifyFirstPrincipal(String name, String email) throws UiObjectNotFoundException{
+	public static void verifyPrincipal(String name, String email) throws UiObjectNotFoundException{
 		String expectedText = name + "; " + email + "; high trust";
-		Assert.assertEquals("Principal data were incorrect", 
-		    	expectedText, firstPrincipal().getText());
-     }
+		Assert.assertTrue("Principal data were incorrect", 
+		    	new UiObject(new UiSelector()
+				.className("android.widget.TextView").text(expectedText)).exists());
+    }
+	
+    public static void verifyVoteResult(String question, int yes, int no, String name, String email) throws UiObjectNotFoundException{
+    	Assert.assertTrue("Vote text was not displayed", voteText().exists());
+		Assert.assertTrue("Quesiton box was not displayed", question().exists());
+		Assert.assertEquals("Invalid question was displayed", question, question().getText());
+	    Assert.assertTrue("Results text was not displayed", resultsText().exists());
+	    Assert.assertEquals("Invalid yes result was displayed", "Yes - " + yes, yesResult().getText());
+	    Assert.assertEquals("Invalid no result was displayed", "No - " + no, noResult().getText());
+	    Assert.assertTrue("Voted principals dropdown was not displayed", votedPrincipalsDropdown().exists());
+	    Assert.assertTrue("Abstained principals dropdown was not displayed", abstainedPrincipalsDropdown().exists());
+	    verifyPrincipal(name, email);
+    }
 
 }

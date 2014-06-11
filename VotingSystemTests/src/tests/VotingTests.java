@@ -41,4 +41,58 @@ public class VotingTests extends UiAutomatorTestCase{
 		Assert.assertTrue("Waiting progress bar was not displayed", VotingDialog.waitingProgress().exists());
 	}
 	
+	public void test_VotingYesAnswer() throws IOException, InterruptedException, UiObjectNotFoundException{
+		AppActions.clearVotingSystemApp();
+		AppActions.findAndRunVotingSystemApp();
+		RegisterKeyDialog.fillRegKeyDialog("testname", "testmail@test.com");
+		ConnectToServerActivity.verifyHasSertificateState();
+		CreateVotingDialog.fillCreateVotingDialog("Test question?");
+		Thread.sleep(2000);
+		VoteActivity.verifyQuestionCreated("Test question?", "testname", "testmail@test.com");
+		
+		VoteActivity.readyToStartButton().click();
+		Thread.sleep(15000);
+		VotingDialog.yesButton().clickAndWaitForNewWindow();
+		Thread.sleep(15000);
+		
+		VoteActivity.votedPrincipalsDropdown().click();
+		VoteActivity.verifyVoteResult("Test question?", 1, 0, "testname", "testmail@test.com");
 	}
+	
+	public void test_VotingNoAnswer() throws IOException, InterruptedException, UiObjectNotFoundException{
+		AppActions.clearVotingSystemApp();
+		AppActions.findAndRunVotingSystemApp();
+		RegisterKeyDialog.fillRegKeyDialog("testname", "testmail@test.com");
+		ConnectToServerActivity.verifyHasSertificateState();
+		CreateVotingDialog.fillCreateVotingDialog("Test question?");
+		Thread.sleep(2000);
+		VoteActivity.verifyQuestionCreated("Test question?", "testname", "testmail@test.com");
+		
+		VoteActivity.readyToStartButton().click();
+		Thread.sleep(15000);
+		VotingDialog.noButton().clickAndWaitForNewWindow();
+		Thread.sleep(15000);
+		
+		VoteActivity.votedPrincipalsDropdown().click();
+		VoteActivity.verifyVoteResult("Test question?", 0, 1, "testname", "testmail@test.com");
+	}
+	
+	public void test_VotingAbstainAnswer() throws IOException, InterruptedException, UiObjectNotFoundException{
+		AppActions.clearVotingSystemApp();
+		AppActions.findAndRunVotingSystemApp();
+		RegisterKeyDialog.fillRegKeyDialog("testname", "testmail@test.com");
+		ConnectToServerActivity.verifyHasSertificateState();
+		CreateVotingDialog.fillCreateVotingDialog("Test question?");
+		Thread.sleep(2000);
+		VoteActivity.verifyQuestionCreated("Test question?", "testname", "testmail@test.com");
+		
+		VoteActivity.readyToStartButton().click();
+		Thread.sleep(15000);
+		VotingDialog.abstainButton().clickAndWaitForNewWindow();
+		Thread.sleep(15000);
+		
+		VoteActivity.abstainedPrincipalsDropdown().click();
+		VoteActivity.verifyVoteResult("Test question?", 0, 0, "testname", "testmail@test.com");
+	}
+
+}

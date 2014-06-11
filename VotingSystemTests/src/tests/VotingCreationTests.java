@@ -13,7 +13,7 @@ import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 
 public class VotingCreationTests extends UiAutomatorTestCase{
-	
+
 	public void test_CreateVotingDialogOpens() throws IOException, InterruptedException, UiObjectNotFoundException{
 		AppActions.clearVotingSystemApp();
 		AppActions.findAndRunVotingSystemApp();
