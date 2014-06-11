@@ -92,7 +92,7 @@ public class Server {
         this.keepWaiting = false;
         secRand = new SecureRandom();
         try {
-            BufferedInputStream input = new BufferedInputStream(new FileInputStream("server_key.k"));
+            BufferedInputStream input = new BufferedInputStream(new FileInputStream("/home/ubuntu/serverdir/server_key.k"));
             byte[] nKey = new byte[128];
             byte[] dKey;
             try {
