@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	compile files('libs/aws-java-sdk-1.7.12-javadoc.jar' , 'libs/aws-java-sdk-1.7.12-sources.jar', 'libs/aws-java-sdk-1.7.12.jar', 'libs/aws-java-sdk-flow-build-tools-1.7.12.jar')
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
