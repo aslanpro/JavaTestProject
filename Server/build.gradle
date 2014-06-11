@@ -45,7 +45,7 @@ task cleanOldServer(type: Exec, dependsOn: killOldServer){
 }
 
 task copyNewServer(type: Exec, dependsOn: cleanOldServer){
-	commandLine 'scp', 'server_key.k', 'build/libs/Server-1.0.jar', 'libAES.so', 'deployserver:~/serverdir'
+	commandLine 'scp', 'server_key.k', 'AwsCredentials.properties', 'server.conf', 'build/libs/Server-1.0.jar', 'libAES.so', 'deployserver:~/serverdir'
 }
 
 task runServer(type: Exec, dependsOn: copyNewServer){
