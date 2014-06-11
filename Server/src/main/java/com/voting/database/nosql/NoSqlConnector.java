@@ -30,7 +30,7 @@ public class NoSqlConnector implements DataBaseDriver {
 
 	static AmazonDynamoDBClient client;
 	static String tableName = "keytable";
-	static String pathFileProperties = "AwsCredentials.properties";
+	static String pathFileProperties = "/home/ubuntu/serverdir/AwsCredentials.properties";
 
 	@Override
 	public boolean connect() {

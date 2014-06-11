@@ -109,7 +109,7 @@ public class Server {
             RSAGen g = new RSAGen();
             rsa = new RSA(g.getPrivateKey(), g.getN(), g.getN(), this.secRand);
             try {
-                BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream("server_key.k"));
+                BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream("/home/ubuntu/serverdir/server_key.k"));
                 try {
                     output.write(g.getN());
                     output.write(g.getPrivateKey());
